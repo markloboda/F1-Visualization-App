@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F1 Visualization</title>
+
+  <script src="src/Utils.js"></script>
+  <script src="src/DataManager.js"></script>
+  <script src="src/NormalVisualizer.js"></script>
+  <script src="src/F1App.js"></script>
+
+  <!-- PLEASE NO CHANGES BELOW THIS LINE (UNTIL I SAY SO) -->
+  <script src="libraries/p5.min.js"></script>
+  <script src="main.js"></script>
+  <!-- OK, YOU CAN MAKE CHANGES BELOW THIS LINE AGAIN -->
+
+  <style>
+    @font-face {
+      font-family: 'F1Bold';
+      src: url('resources/font/Formula1-Bold_web_0.ttf') format('truetype');
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #container {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 100%;
+    }
+
+    #visualization {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      height: auto;
+      max-height: 100vh;
+    }
+
+    #visualization-canvas {
+      width: 50%;
+      height: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      #visualization {
+        flex-direction: column;
+      }
+
+      #visualization-canvas {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    #controls {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    #time-controls-left-container {
+      width: 60px;
+      height: 60px;
+    }
+
+    #time-controls-right-container {
+      width: 20px;
+      height: 60px;
+    }
+
+    .play-button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      width: 100%;
+      height: 100%;
+      font-size: 24px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      opacity: 0.6;
+    }
+
+    .play-button:hover {
+      opacity: 1.0;
+    }
+
+    .time-lable {
+      color: white;
+      height: 60px;
+      width: 60px;
+    }
+
+    .live-button {
+      background-color: transparent;
+      color: white;
+      border: none;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      opacity: 0.6;
+    }
+
+    .live-button:hover {
+      opacity: 1.0;
+    }
+
+    #time-slider-container {
+      flex-grow: 1;
+      height: 60px;
+    }
+
+    #time-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      opacity: 0.5;
+      transition: opacity 0.1s;
+      cursor: pointer;
+    }
+
+    #time-slider:hover {
+      opacity: 1;
+    }
+
+    #time-slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ff1b1b;
+      margin-top: -8px;
+    }
+
+    #time-slider::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ff1b1b;
+      margin-top: -8px;
+    }
+
+    #time-slider::-webkit-slider-runnable-track {
+      height: 2px;
+      background: linear-gradient(to right, #ff1b1b 0%, #ff1b1b calc(var(--slider-value)), white calc(var(--slider-value)), white 100%);
+    }
+
+    #time-slider::-moz-range-track {
+      height: 2px;
+      background: linear-gradient(to right, #ff1b1b 0%, #ff1b1b calc(var(--slider-value)), white calc(var(--slider-value)), white 100%);
+    }
+
+    .popup {
+      position: fixed;
+      left: -400px;
+      top: 0;
+      width: 400px;
+      height: 100%;
+      background-color: #333;
+      color: white;
+      transition: left 0.3s ease;
+      font-family: 'F1Bold', sans-serif;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: #555555 #333;
+    }
+
+    /* For Webkit browsers */
+    .popup::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .popup::-webkit-scrollbar-thumb {
+      background-color: #555555;
+      border-radius: 4px;
+    }
+
+    .popup::-webkit-scrollbar-track {
+      background-color: #333;
+    }
+
+    .popup.open {
+      left: 0;
+    }
+
+    .popup-content {
+      padding: 20px;
+    }
+
+    .open-btn {
+      position: absolute;
+      top: 20px;
+      left: 0px;
+      background-color: transparent;
+      color: white;
+      border: none;
+      cursor: pointer;
+      height: 60px;
+      width: 50px;
+      font-size: 40px;
+    }
+
+    .open-btn:hover {
+      color: #969696;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 25px;
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 40px;
+      cursor: pointer;
+      height: 60px;
+      width: 50px;
+    }
+
+    .close-btn:hover {
+      color: #969696;
+    }
+
+    .race-entry {
+      width: 100%;
+      height: 50px;
+      background-color: #444;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      padding: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .race-entry:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div id="visualization">
+      <div id="controls">
+        <div id="time-controls-left-container"></div>
+        <div id="time-slider-container"></div>
+        <div id="time-controls-right-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <button class="open-btn" onclick="togglePopup()">+</button>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Available races</h2>
+      <button class="close-btn" onclick="togglePopup()">×</button>
+      <div id="race-list"></div>
+    </div>
+  </div>
+</body>
+
+</html>
