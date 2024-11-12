@@ -1,5 +1,7 @@
 # F1-Visualization-App
 
+**Aplikacija je dostopna na povezavi: ** [https://markloboda.github.io/F1-Visualization-App/](https://markloboda.github.io/F1-Visualization-App/)
+
 Vprašanje: Kakšno je bolj podrobno trenutno, ali preteklo, stanje Formule 1 dirke?
 
 Zanima nas, kakšen je bil potek Formula 1 dirke 27. oktobra 2024 v Mehiki.
