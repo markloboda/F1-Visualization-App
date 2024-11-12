@@ -6,7 +6,7 @@ Zanima nas, kakšen je bil potek Formula 1 dirke 27. oktobra 2024 v Mehiki.
 
 Najprej se nam odpre zadnja dirka, ki se je zgodila. V tem trenutku je to dirka v Braziliji 3. novembra 2024.
 
-![alt text](image.png)
+![alt text](img/image.png)
 
 S pritiskom na gumb "+" zgoraj levo se odpre baza vseh preteklih dirk od začetka sezone 2024 in naprej. V primeru, da je naslednji teden nova dirka, se bo tudi ta samodejno prikazala v tej bazi.
 
