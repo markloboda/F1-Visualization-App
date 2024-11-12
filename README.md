@@ -10,11 +10,13 @@ Najprej se nam odpre zadnja dirka, ki se je zgodila. V tem trenutku je to dirka 
 
 ![alt text](img/image.png)
 
-S pritiskom na gumb "+" zgoraj levo se odpre baza vseh preteklih dirk od začetka sezone 2024 in naprej. V primeru, da je naslednji teden nova dirka, se bo tudi ta samodejno prikazala v tej bazi.
+S pritiskom na gumb "+" zgoraj levo se odpre baza vseh preteklih dirk od začetka sezone 2024 in naprej. V primeru, da je naslednji teden nova dirka, se bo tudi ta samodejno prikazala v tej bazi. Pomembno je omeniti, da vizualizacija omogoča tudi spremljanje trenutnega stanja dirke, ki je v poteku, ampak tega ne moram prikazati, saj trenutno ni Formula 1 dirke :).
 
 ![alt text](img/image-1.png)
 
 Na seznamu si izberemo dirko "2024 Mexico-Mexico City", torej "Leto Država-Mesto", kjer se je dirka zgodila.
+
+![alt text](img/image-13.png)
 
 Naloži se nova dirka, kjer lahko vidimo vse, trenutno znane in za ogled pomembne podatke.
 
@@ -64,7 +66,7 @@ Zgoraj na ekranu se nam izriše okno, ki vsebuje voznikovo polno ime, njegovo sl
 
 Če se sedaj premaknemo nekoliko naprej v dirki na lokalni čas 04:39:01 PM, lahko vidimo, da so vozniki sedaj opravili že kar nekaj krogov, kjer je v vodstvu enak voznik, ki je bil na začetku dirke (Carlos Sainz) označen z SAI.
 
-Na levi pri voznikih se izriše ikona za najhitrejši čas vozniku, ki je trenutno opravil najhitrejši krog v dirki. S pritiskom nanj lahko vidimo, da je ta čas 82.272 sekund, prav tako pa je zgoraj obarvan vijolično za lažjo razpoznavnost.
+Na levi pri voznikih se izriše ikona za najhitrejši čas vozniku, ki je trenutno opravil najhitrejši krog v dirki. S pritiskom nanj lahko vidimo, da je ta čas 81.262 sekund, prav tako pa je zgoraj obarvan vijolično za lažjo razpoznavnost.
 
 ![alt text](img/image-9.png)
 
